@@ -2,11 +2,46 @@
 #include "../../include/point.hpp"
 #include <cmath>
 
+#define EPSILON 1e-6
+
 template <Scalar T>
 double side(Point<T> p1, Point<T> p2) {
   const double sideX = static_cast<double>(p1.x - p2.x);
   const double sideY = static_cast<double>(p1.y - p2.y);
-  return (sqrt(sideX * sideX + sideY * sideY));
+  return (std::sqrt(sideX * sideX + sideY * sideY));
+}
+
+/*    a
+   0_____1
+   /     \
+c /       \ d
+ /         \
+3‾‾‾‾‾‾‾‾‾‾‾2
+      b        */
+template <Scalar T>
+double Trapezoid<T>::square() const {  
+  const double base1Tmp = side(*points[0], *points[1]);
+  const double side1Tmp = side(*points[1], *points[2]);
+  const double base2Tmp = side(*points[2], *points[3]);
+  const double side2Tmp = side(*points[3], *points[0]);
+  
+  const double a = std::min(base1Tmp, base2Tmp);
+  const double b = std::max(base1Tmp, base2Tmp);
+  const double c = (base1Tmp < base2Tmp) ? side2Tmp : side1Tmp;
+  const double d = (base1Tmp < base2Tmp) ? side1Tmp : side2Tmp;
+
+  if (std::fabs(a - b) < EPSILON) {
+    throw IncorrectFigureException();
+  }
+
+  const double fracBeforeSqrt = (a + b) / 2.0;
+  const double fracUnderSqrt = ((a - b) * (a - b) + c * c - d * d) / (2.0 * (a - b));
+  
+  const double _square = fracBeforeSqrt * std::sqrt(c * c - fracUnderSqrt * fracUnderSqrt);
+  if (_square < 0) {
+    throw IncorrectFigureException();
+  }
+  return _square;
 }
 
 template <Scalar T>
