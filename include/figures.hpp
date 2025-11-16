@@ -23,9 +23,9 @@ class Figure {
     Figure<T> &operator=(const Figure<T> &other);
     Figure<T> &operator=(Figure<T> &&other) noexcept;
 
-    friend std::ostream &operator<<(std::ostream &out, const Figure<T> &f);
-    friend std::istream &operator>>(std::istream &in, Figure<T> &f);
-    friend bool operator==(const Figure<T> &l, const Figure<T> &r);
+    friend std::ostream &operator<<<>(std::ostream &out, const Figure<T> &f);
+    friend std::istream &operator>><>(std::istream &in, Figure<T> &f);
+    friend bool operator==<>(const Figure<T> &l, const Figure<T> &r);
 
     class EmptyFigureException {};
     class IncorrectPointsCountException {};
