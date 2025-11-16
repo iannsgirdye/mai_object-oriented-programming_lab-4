@@ -11,6 +11,13 @@ double side(Point<T> p1, Point<T> p2) {
   return (std::sqrt(sideX * sideX + sideY * sideY));
 }
 
+template <Scalar T>
+double Rectangle<T>::square() const {
+  const double side1 = side(*points[0], *points[1]);
+  const double side2 = side(*points[1], *points[2]);
+  return side1 * side2;
+}
+
 /*    a
    0_____1
    /     \
