@@ -29,6 +29,7 @@ class Figure {
 
     class EmptyFigureException {};
     class IncorrectPointsCountException {};
+    class IncorrectFigureException {};
 };
 
 template <Scalar T>
