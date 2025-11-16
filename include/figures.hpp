@@ -18,7 +18,7 @@ class Figure {
     virtual ~Figure() = default;
 
     virtual double square() const = 0;
-    virtual Point<T> center() const = 0;
+    Point<T> center() const;
 
     Figure<T> &operator=(const Figure<T> &other);
     Figure<T> &operator=(Figure<T> &&other) noexcept;
@@ -39,7 +39,6 @@ class Rectangle: public Figure<T> {
     Rectangle(const std::vector<Point<T>> &ps);
 
     double square() const override;
-    Point<T> center() const override;
 };
 
 template <Scalar T>
@@ -49,7 +48,6 @@ class Trapezoid: public Figure<T> {
     Trapezoid(const std::vector<Point<T>> &ps);
 
     double square() const override;
-    Point<T> center() const override;
 };
 
 template <Scalar T>
@@ -59,7 +57,6 @@ class Rhomb: public Figure<T> {
     Rhomb(const std::vector<Point<T>> &ps);
 
     double square() const override;
-    Point<T> center() const override;
 };
 
 #endif

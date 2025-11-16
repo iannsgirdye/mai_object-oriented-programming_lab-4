@@ -12,6 +12,14 @@ double side(Point<T> p1, Point<T> p2) {
 }
 
 template <Scalar T>
+Point<T> Figure<T>::center() const {
+  Point<T> p;
+  p.x = (points[0]->x + points[1]->x + points[2]->x + points[3]->x) / 4.0;
+  p.y = (points[0]->y + points[1]->y + points[2]->y + points[3]->y) / 4.0;
+  return p;
+}
+
+template <Scalar T>
 double Rectangle<T>::square() const {
   const double side1 = side(*points[0], *points[1]);
   const double side2 = side(*points[1], *points[2]);
