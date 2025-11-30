@@ -42,13 +42,19 @@ class FiguresArray {
       struct Point<T> c;
       for (size_t i = 0; i != figures.size(); ++i) {
         c = figures[i]->center();
-        std::cout << "(" << c.x << ", " << c.y << ")" << std::endl;
+        if (i > 0) {
+          std::cout << " ";
+        }
+        std::cout << "(" << c.x << ", " << c.y << ")";
       }
     }
 
     void printSquares() const {
       for (size_t i = 0; i != figures.size(); ++i) {
-        std::cout << figures[i]->square() << std::endl;
+        if (i > 0) {
+          std::cout << " ";
+        }
+        std::cout << figures[i]->square();
       }
     }
 
