@@ -151,8 +151,11 @@ class Trapezoid: public Figure<T> {
 
       const double fracBeforeSqrt = (a + b) / 2.0;
       const double fracUnderSqrt = ((a - b) * (a - b) + c * c - d * d) / (2.0 * (a - b));
-      
-      const double _square = fracBeforeSqrt * std::sqrt(c * c - fracUnderSqrt * fracUnderSqrt);
+      const double valueUnderSqrt = c * c - fracUnderSqrt * fracUnderSqrt;
+      if (valueUnderSqrt < 0) {
+        throw typename Figure<T>::IncorrectFigureException();
+      }
+      const double _square = fracBeforeSqrt * std::sqrt(valueUnderSqrt);
       if (_square < EPSILON) {
         throw typename Figure<T>::IncorrectFigureException();
       }
