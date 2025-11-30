@@ -10,6 +10,9 @@ template <Scalar T>
 struct Point {
   T x;
   T y;
+
+  Point(): x(0), y(0) {}
+  Point(T _x, T _y): x(_x), y(_y) {}
 };
 
 #endif
