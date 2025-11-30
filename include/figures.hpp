@@ -113,7 +113,11 @@ class Rectangle: public Figure<T> {
     double square() const override {
       const double side1 = side(this->points[0], this->points[1]);
       const double side2 = side(this->points[1], this->points[2]);
-      return side1 * side2;
+      const double _square = side1 * side2;
+      if (_square < EPSILON) {
+        throw typename Figure<T>::IncorrectFigureException();
+      }
+      return _square;
     }
 };
 
@@ -149,7 +153,7 @@ class Trapezoid: public Figure<T> {
       const double fracUnderSqrt = ((a - b) * (a - b) + c * c - d * d) / (2.0 * (a - b));
       
       const double _square = fracBeforeSqrt * std::sqrt(c * c - fracUnderSqrt * fracUnderSqrt);
-      if (_square < 0) {
+      if (_square < EPSILON) {
         throw typename Figure<T>::IncorrectFigureException();
       }
       return _square;
@@ -165,7 +169,11 @@ class Rhomb: public Figure<T> {
     double square() const override {
       const double d1 = side(this->points[0], this->points[2]);
       const double d2 = side(this->points[1], this->points[3]);
-      return d1 * d2 / 2.0;
+      const double _square = d1 * d2 / 2.0;
+      if (_square < EPSILON) {
+        throw typename Figure<T>::IncorrectFigureException();
+      }
+      return _square;
     }
 };
 
